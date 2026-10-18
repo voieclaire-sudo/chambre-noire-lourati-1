@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الغرفة المظلمة — Lourati 1 Enfants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Noto+Naskh+Arabic:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1c2b2a; --night:#0e1817; --parch:#f3e9d2; --gold:#b8894a; --gold-hi:#e0b36a; --teal:#2e6e67; --teal-hi:#5fb3a8; --bad:#c06a6a;
+  --ar:'Noto Naskh Arabic','Amiri',serif; --kufi:'Reem Kufi','Noto Naskh Arabic',sans-serif; --fr:'Cormorant Garamond',Georgia,serif; --ui:'Jost',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--night)}
+body{margin:0;min-height:100vh;background:radial-gradient(1200px 600px at 50% -10%,#1d3a37 0,var(--night) 70%);color:var(--parch);font-family:var(--ui);padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+button{font-family:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold-hi);outline-offset:3px}
+[hidden]{display:none!important}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px 40px}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
+.brand{display:flex;align-items:baseline;gap:10px}
+.wm{font-family:var(--kufi);font-size:1.8rem;color:var(--gold-hi);line-height:1}
+.sub{font-size:.9rem;color:#b9c7c3}
+.nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.btn{border:1.5px solid var(--gold);background:transparent;border-radius:999px;padding:.5rem 1rem;font-size:.95rem;cursor:pointer;color:var(--parch);transition:background .15s}
+.btn:hover{background:rgba(184,137,74,.18)}
+.btn.primary{background:var(--gold);color:var(--ink);font-weight:600}
+.btn.primary:hover{background:var(--gold-hi)}
+.btn.small{padding:.25rem .65rem;font-size:.82rem}
+
+.hero{text-align:center;padding:10px 0 22px}
+.hero h1{font-family:var(--ar);font-weight:700;font-size:clamp(2.4rem,9vw,4rem);margin:0;color:var(--gold-hi);line-height:1.6;text-shadow:0 0 30px rgba(224,179,106,.35)}
+.hero .fr{font-family:var(--fr);font-style:italic;font-size:1.4rem;margin:0}
+.hero p.how{max-width:36rem;margin:.7rem auto 0;color:#b9c7c3;line-height:1.5}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:12px}
+.tile{position:relative;text-align:start;border:1.5px solid rgba(184,137,74,.55);background:rgba(243,233,210,.05);border-radius:14px;padding:12px 12px 46px;min-height:150px;cursor:pointer;transition:background .15s,border-color .15s}
+.tile:hover{background:rgba(243,233,210,.1);border-color:var(--gold-hi)}
+.tile .n{font-family:var(--kufi);font-size:2rem;color:var(--gold-hi);line-height:1}
+.tile .l{font-size:.78rem;color:#9fb0ab}
+.tile .t{display:block;font-family:var(--fr);font-size:1.12rem;font-weight:700;margin-top:6px;line-height:1.15}
+.tile .ta{display:block;font-family:var(--ar);font-size:1rem;direction:rtl;margin-top:2px;line-height:1.7}
+.tile .foot{position:absolute;left:12px;right:10px;bottom:9px;display:flex;align-items:center;justify-content:space-between}
+.tile .stars{display:flex;gap:2px}
+.star{width:16px;height:16px;fill:none;stroke:#6f8782;stroke-width:1.6}
+.star.on{fill:var(--gold-hi);stroke:var(--gold-hi)}
+
+.lessonbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;padding:2px 0 12px}
+.lessonbar .num{font-family:var(--kufi);color:var(--gold-hi);font-size:1.3rem}
+.lessonbar .name{font-family:var(--fr);font-size:1.4rem;font-weight:700}
+.lessonbar .namear{font-family:var(--ar);font-size:1.2rem;direction:rtl}
+.lessonbar .btn{margin-inline-start:auto}
+.consigne{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;padding:14px 18px;border:1.5px solid var(--gold);border-radius:14px;background:rgba(243,233,210,.06);margin-bottom:12px}
+.consigne .ar{font-family:var(--ar);font-weight:700;font-size:clamp(1.4rem,4.5vw,2rem);direction:rtl;line-height:1.7}
+.consigne .fr{font-family:var(--fr);font-style:italic;font-size:1.2rem;color:#d8d0b8}
+.hud{display:flex;gap:16px;flex-wrap:wrap;font-size:.95rem;color:#c9d6d2}
+.hud b{font-family:var(--kufi);font-size:1.25rem;color:var(--gold-hi);margin-left:4px;font-weight:700}
+
+.room{position:relative;overflow:hidden;border-radius:18px;border:3px solid var(--gold);min-height:340px;user-select:none;-webkit-user-select:none;
+  background:
+   repeating-linear-gradient(45deg,rgba(184,137,74,.07) 0 2px,transparent 2px 26px),
+   repeating-linear-gradient(-45deg,rgba(184,137,74,.07) 0 2px,transparent 2px 26px),
+   linear-gradient(180deg,#1a3a37 0,#12201f 100%);
+  box-shadow:inset 0 0 60px rgba(0,0,0,.55),0 14px 40px rgba(0,0,0,.5);
+  --x:50%;--y:45%;--r:110px}
+.room::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 360px at 50% 0,rgba(255,226,160,.28),transparent 70%);opacity:0;transition:opacity .7s;pointer-events:none;z-index:1}
+.room.lit::before{opacity:1}
+.grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:20px 14px;padding:92px 18px 28px}
+.shade{position:absolute;inset:0;z-index:5;pointer-events:none;transition:opacity .7s;
+  background:radial-gradient(circle at var(--x) var(--y),rgba(6,12,11,0) 0,rgba(6,12,11,0) calc(var(--r)*.42),rgba(6,12,11,.985) var(--r))}
+.beam{position:absolute;left:0;top:0;width:calc(var(--r)*2);height:calc(var(--r)*2);z-index:6;pointer-events:none;transition:opacity .7s;
+  transform:translate(calc(var(--x) - var(--r)),calc(var(--y) - var(--r)));
+  background:radial-gradient(circle,rgba(255,222,150,.22),rgba(255,222,150,0) 68%);mix-blend-mode:screen}
+.room.lit .shade,.room.lit .beam{opacity:0}
+.lamp{position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:8;pointer-events:none}
+.lamp .bulb{fill:#56665f;transition:fill .5s}
+.room.lit .lamp .bulb{fill:#ffe3a3;filter:drop-shadow(0 0 14px #ffd27a)}
+.switch{position:absolute;top:10px;right:10px;z-index:8;display:flex;align-items:center;gap:8px;background:rgba(14,24,23,.88);border:1.5px solid var(--gold);border-radius:12px;padding:6px 12px 6px 8px;cursor:pointer;font-size:.9rem;color:var(--parch)}
+.switch:hover{background:rgba(46,110,103,.55)}
+.switch .lever{transition:transform .25s}
+.room.lit .switch .lever{transform:translateY(-15px)}
+
+.card{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:98px;padding:14px 6px 8px;
+  border:2px solid var(--gold);border-radius:10px;background:linear-gradient(180deg,#f6edd8,#e8dbba);color:var(--ink);cursor:pointer;
+  transform:rotate(var(--rot,0deg));box-shadow:0 6px 0 #7d5d2e,0 12px 20px rgba(0,0,0,.45);transition:transform .15s}
+.card::before{content:"";position:absolute;top:5px;left:50%;width:30px;height:5px;margin-left:-15px;border-radius:3px;background:var(--gold)}
+.card:hover{transform:rotate(var(--rot,0deg)) translateY(-3px)}
+.card.phrase{grid-column:span 2}
+.card .ar{font-family:var(--ar);font-weight:700;font-size:var(--fs,1.9rem);line-height:1.7;direction:rtl;text-align:center;max-width:100%}
+.card .ar mark.hl{background:rgba(184,137,74,.40);color:#102220;border-radius:6px;padding:0 .2em;box-shadow:inset 0 -3px 0 var(--gold)}
+.card .ar mark.hl.blank{display:inline-block;min-width:2.4em;height:1em;background:transparent;box-shadow:none;border-bottom:3px solid var(--gold);border-radius:0;vertical-align:baseline}
+.card .fr{font-family:var(--fr);font-style:italic;font-weight:500;font-size:1.02rem;color:#4a5a57;line-height:1.1;text-align:center}
+.card .tag{display:none;margin-top:5px;font-family:var(--ar);font-weight:700;font-size:.85rem;color:#fff;background:var(--c,#2e6e67);border-radius:10px;padding:1px 9px;line-height:1.55;text-align:center}
+.room.nofr .card:not(.found):not(.wrong) .fr{display:none}
+.card.found{z-index:7;border-color:var(--c);box-shadow:0 6px 0 #7d5d2e,0 0 0 3px var(--c),0 0 30px var(--c);cursor:default;animation:pop .35s}
+.card.wrong{z-index:7;border-color:var(--bad);filter:saturate(.35) brightness(.92);cursor:default;animation:shake .4s}
+.card.found .tag,.card.wrong .tag{display:inline-block}
+@keyframes shake{0%,100%{translate:0}20%{translate:-7px}40%{translate:6px}60%{translate:-4px}80%{translate:3px}}
+@keyframes pop{0%{scale:1}40%{scale:1.1}100%{scale:1}}
+
+.result{margin-top:14px;padding:18px;border:1.5px solid var(--gold);border-radius:14px;background:rgba(243,233,210,.07);text-align:center}
+.result .stars{display:flex;justify-content:center;gap:6px;margin-bottom:6px}
+.result .star{width:38px;height:38px}
+.result .praise{font-family:var(--ar);font-weight:700;font-size:1.6rem;margin:0;color:var(--gold-hi);line-height:1.6}
+.result .msg{margin:2px 0 10px;font-family:var(--fr);font-size:1.25rem;font-style:italic}
+.result .tipbox{max-width:38rem;margin:0 auto 14px;padding:10px 14px;border-inline-start:4px solid var(--teal-hi);background:rgba(46,110,103,.25);text-align:start;line-height:1.55;font-size:.98rem}
+.result .tipbox b{font-family:var(--fr);font-size:1.1rem}
+.result .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+
+dialog{max-width:680px;width:calc(100% - 24px);max-height:92vh;overflow:auto;border:2px solid var(--gold);border-radius:16px;background:var(--ink);color:var(--parch);padding:20px;font-family:var(--ui)}
+dialog::backdrop{background:rgba(0,0,0,.65)}
+dialog h2{font-family:var(--fr);font-size:1.6rem;margin:0 0 6px}
+dialog label{display:block;font-size:.88rem;color:#c9d6d2;margin:12px 0 4px}
+dialog input[type=text],dialog textarea,dialog select{width:100%;background:#0e1817;color:var(--parch);border:1.5px solid #4c6a65;border-radius:8px;padding:.5rem .6rem;font:inherit}
+dialog textarea{min-height:100px;font-family:var(--ar);font-size:1.15rem;line-height:1.8}
+dialog textarea.json{font-family:ui-monospace,monospace;font-size:.8rem;line-height:1.4;min-height:90px}
+dialog .ar-in{font-family:var(--ar);font-size:1.15rem;direction:rtl}
+dialog fieldset{border:1.5px solid #3b524e;border-radius:12px;margin:14px 0 0;padding:4px 12px 12px}
+dialog legend{padding:0 6px;font-family:var(--fr);font-size:1.15rem;color:var(--gold-hi)}
+dialog details{margin-top:16px;border:1.5px dashed #3b524e;border-radius:12px;padding:8px 12px}
+dialog summary{cursor:pointer;font-weight:500}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hint{font-size:.85rem;color:#92a5a0;margin:4px 0 0;line-height:1.45}
+.err{color:#ffd9a0;font-size:.92rem;margin:10px 0 0;min-height:1.2em}
+.dlg-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-top:16px}
+.chk{display:flex;align-items:center;gap:8px;margin:12px 0 0;font-size:.95rem;color:var(--parch)}
+.chk input{width:18px;height:18px;accent-color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid #4c6a65;border-radius:999px;padding:1px 3px 1px 11px;background:#0e1817}
+.chip.added{border-color:var(--gold-hi)}
+.chip .a{font-family:var(--ar);font-size:1.1rem;line-height:1.7}
+.chip .f{font-size:.78rem;color:#9fb0ab}
+.chip button{border:0;background:transparent;color:#e8b9ad;cursor:pointer;font-size:1.15rem;line-height:1;padding:2px 7px}
+.addrow{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-top:6px}
+
+@media (max-width:520px){
+  .wm{font-size:1.5rem}.sub{display:none}
+  .grid{padding:88px 12px 24px;gap:18px 10px}
+  .row2,.addrow{grid-template-columns:1fr}
+  .switch span{display:none}.switch{padding:6px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="wm">لغتي</span><span class="sub">Lourati 1 · Enfants</span></div>
+    <nav class="nav">
+      <button class="btn" id="btnLessons" type="button" hidden>Toutes les leçons</button>
+      <button class="btn" id="btnSettings" type="button">Réglages</button>
+    </nav>
+  </header>
+
+  <main id="picker">
+    <section class="hero">
+      <h1 lang="ar">الغُرْفَةُ المُظْلِمَة</h1>
+      <p class="fr">La pièce sombre</p>
+      <p class="how">Une chambre sombre pour chacune des 24 leçons. Trouve les mots cachés dans les cases avec la lampe torche, ou allume la lumière pour t'aider. Le bouton « + Mots » permet d'ajouter tes propres mots à chaque leçon.</p>
+    </section>
+    <div class="tiles" id="tiles"></div>
+  </main>
+
+  <main id="game" hidden>
+    <div class="lessonbar">
+      <span class="num" id="gNum"></span>
+      <span class="name" id="gName"></span>
+      <span class="namear" id="gNameAr" lang="ar"></span>
+      <button class="btn small" id="gAdd" type="button">Ajouter des mots</button>
+    </div>
+    <section class="consigne" aria-live="polite">
+      <div>
+        <div class="ar" id="instrAr" lang="ar"></div>
+        <div class="fr" id="instrFr"></div>
+      </div>
+      <div class="hud">
+        <span>Manche<b id="hRound"></b></span>
+        <span>Trouvés<b id="hFound"></b></span>
+        <span>Erreurs<b id="hErr"></b></span>
+        <span>Points<b id="hPts"></b></span>
+      </div>
+    </section>
+
+    <div class="room" id="room">
+      <svg class="lamp" viewBox="0 0 120 84" width="112" height="78" aria-hidden="true">
+        <line x1="60" y1="0" x2="60" y2="30" stroke="#b8894a" stroke-width="2"/>
+        <path d="M28 58 Q60 18 92 58 Z" fill="#2e6e67" stroke="#b8894a" stroke-width="2"/>
+        <circle class="bulb" cx="60" cy="64" r="9"/>
+      </svg>
+      <button class="switch" id="sw" type="button" aria-pressed="false">
+        <svg viewBox="0 0 40 56" width="30" height="42" aria-hidden="true">
+          <rect x="2" y="2" width="36" height="52" rx="8" fill="#f3e9d2" stroke="#b8894a" stroke-width="3"/>
+          <rect x="14" y="10" width="12" height="36" rx="6" fill="#1c2b2a"/>
+          <rect class="lever" x="15.5" y="27" width="9" height="17" rx="4.5" fill="#b8894a"/>
+        </svg>
+        <span id="swLabel">Allumer la lumière</span>
+      </button>
+      <div class="grid" id="grid"></div>
+      <div class="shade" aria-hidden="true"></div>
+      <div class="beam" aria-hidden="true"></div>
+    </div>
+
+    <section class="result" id="result" hidden></section>
+  </main>
+</div>
+
+<!-- AJOUT DE MOTS -->
+<dialog id="dlgWords">
+  <h2 id="wmTitle"></h2>
+  <p class="hint">Ajoute un mot dans la bonne catégorie. Les nouveaux mots (contour doré) apparaissent dès la prochaine manche. Le × retire un mot. Pour un mot dans une phrase, mets le mot visé entre crochets : <span lang="ar">الوَلَدُ [مُجْتَهِدٌ]</span> (et [___] pour un blanc).</p>
+  <div id="wmCats"></div>
+  <details>
+    <summary>Ajouter plusieurs mots d'un coup</summary>
+    <label for="wmBulkCat">Catégorie</label>
+    <select id="wmBulkCat"></select>
+    <label for="wmBulk">Un mot par ligne : arabe = français</label>
+    <textarea id="wmBulk" dir="rtl" spellcheck="false" placeholder="رَجُلٌ = un homme"></textarea>
+    <div class="dlg-actions"><button class="btn" type="button" id="wmBulkAdd">Ajouter la liste</button></div>
+  </details>
+  <p class="err" id="wmErr" role="alert"></p>
+  <div class="dlg-actions">
+    <button class="btn" type="button" id="wmReset">Rétablir les mots d'origine</button>
+    <button class="btn primary" type="button" id="wmClose">Terminé</button>
+  </div>
+</dialog>
+
+<!-- RÉGLAGES -->
+<dialog id="dlgSet">
+  <h2>Réglages</h2>
+  <div class="row2">
+    <div><label for="sBoxes">Cases par manche (maximum)</label>
+      <select id="sBoxes"><option value="8">8</option><option value="12">12</option><option value="16">16</option></select></div>
+    <div><label for="sRounds">Manches par leçon</label>
+      <select id="sRounds"><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+  </div>
+  <label for="sFrMode">Traduction française sur les cases</label>
+  <select id="sFrMode">
+    <option value="lesson">Selon la leçon (recommandé)</option>
+    <option value="always">Toujours visible</option>
+    <option value="never">Jamais visible</option>
+  </select>
+  <p class="hint">« Selon la leçon » cache la traduction quand elle donnerait la réponse. Elle apparaît toujours quand la case est trouvée.</p>
+  <label for="sTorch">Taille de la lampe torche</label>
+  <input type="range" id="sTorch" min="70" max="190" step="10" style="width:100%;accent-color:#b8894a">
+  <label class="chk"><input type="checkbox" id="sSnd"> Sons</label>
+  <label for="sJson">Sauvegarde de toutes les leçons et des mots ajoutés</label>
+  <textarea id="sJson" class="json" spellcheck="false"></textarea>
+  <p class="err" id="sErr" role="alert"></p>
+  <div class="dlg-actions">
+    <button class="btn" type="button" id="sExport">Exporter</button>
+    <button class="btn" type="button" id="sDown">Télécharger</button>
+    <button class="btn" type="button" id="sImport">Importer</button>
+    <button class="btn primary" type="button" id="sClose">Fermer</button>
+  </div>
+</dialog>
+
+<script>
+(function(){
+'use strict';
+const $ = (s,r=document)=>r.querySelector(s);
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const arNum = n => String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+const shuffle = a => {a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const KEY='lourati1-chambre-sombre-v3';
+const PALETTE=['#2e9a8e','#c8923e','#c4657f','#7a62c8'];
+const STAR='<svg class="star__CLS__" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z" stroke-linejoin="round"/></svg>';
+const starSvg = on => STAR.replace('__CLS__', on?' on':'');
+
+/* ====================== LES 24 LEÇONS ======================
+   t/ta = titre fr/ar · tip = « À retenir » · h:1 = traduction cachée (elle donnerait la réponse)
+   b = nombre de cases max · cats = [arabe, français, "mot=traduction|mot=traduction", {ins, color}] */
+const RAW=[
+{t:"Les catégories de mots",ta:"أَقْسَامُ الكَلاَمِ",h:1,
+ tip:"Si on peut mettre « un/une » ou « le/la » devant le mot, c'est un nom. S'il exprime une action précise dans le temps, c'est un verbe. Sinon, c'est très probablement une préposition.",
+ cats:[
+  ["اسم","nom","رَجُلٌ=un homme|قِطٌّ=un chat|بَابٌ=une porte|قَلَمٌ=un stylo|كِتَابٌ=un livre|سَيَّارَةٌ=une voiture|بَعِيدٌ=loin|طَالِبٌ=un étudiant"],
+  ["فعل","verbe","كَتَبَ=il a écrit|يَكْتُبُ=il écrit|ذَهَبَ=il est parti|يَشْرَبُ=il boit|أَكَلَ=il a mangé|يَفْتَحُ=il ouvre|قَرَأَ=il a lu|جَلَسَ=il s'est assis"],
+  ["حرف","préposition","فِي=dans|عَلَى=sur|إِلَى=vers|نَعَمْ=oui|مِنْ=de|هَلْ=est-ce que|عَنْ=au sujet de|لَا=non"]]},
+{t:"Masculin et féminin",ta:"المُذَكَّرُ وَالمُؤَنَّثُ",h:1,
+ tip:"Le ة marque le plus souvent le féminin : طَالِبَةٌ. Mais quelques mots féminins très courants n'ont pas de ة du tout : أُمّ (mère), أَرْضٌ (terre), شَمْسٌ (soleil), نَارٌ (feu). Ce sont des exceptions à mémoriser par cœur.",
+ cats:[
+  ["مُذَكَّر","masculin","طَالِبٌ=un étudiant|أَسَدٌ=un lion|مِفْتَاحٌ=une clé|بَيْتٌ=une maison|غَزَالٌ=une gazelle (mâle)|مُدَرِّسٌ=un enseignant|كِتَابٌ=un livre|قَلَمٌ=un stylo|رَجُلٌ=un homme|وَلَدٌ=un garçon"],
+  ["مُؤَنَّث","féminin","طَالِبَةٌ=une étudiante|غَزَالَةٌ=une gazelle|سَيَّارَةٌ=une voiture|مُعَلِّمَةٌ=une enseignante|مُدَرِّسَةٌ=une enseignante|أُمٌّ=une mère|أَرْضٌ=une terre|شَمْسٌ=un soleil|نَارٌ=un feu|مَدْرَسَةٌ=une école|بِنْتٌ=une fille"]]},
+{t:"Défini et indéfini",ta:"المَعْرِفَةُ وَالنَّكِرَةُ",h:1,
+ tip:"Le tanwîn (le petit double signe final ٌ ً ٍ) est la marque sonore de l'indéfini ; l'article ال est la marque visuelle du défini. Les deux ne se mettent jamais ensemble sur le même mot.",
+ cats:[
+  ["نَكِرَة","indéfini","طَالِبٌ=un étudiant|رَجُلٌ=un homme|سَيَّارَةٌ=une voiture|قَلَمٌ=un stylo|بَابٌ=une porte|كِتَابٌ=un livre|بَيْتٌ=une maison|مُعَلِّمٌ=un enseignant|وَلَدٌ=un garçon|مَدْرَسَةٌ=une école"],
+  ["مَعْرِفَة","défini","الطَّالِبُ=l'étudiant|الرَّجُلُ=l'homme|السَّيَّارَةُ=la voiture|القَلَمُ=le stylo|البَابُ=la porte|الكِتَابُ=le livre|البَيْتُ=la maison|المُعَلِّمُ=l'enseignant|الوَلَدُ=le garçon|المَدْرَسَةُ=l'école"]]},
+{t:"La déclinaison — l'i'râb",ta:"الإِعْرَابُ",
+ tip:"Retiens les couleurs : vert = مرفوع (Damma), bleu = منصوب (Fatha), orange = مجرور (Kasra), violet = مجزوم (Sukûn). Elles reviendront tout au long du cours.",
+ cats:[
+  ["مَرْفُوع","Damma ُ","الوَلَدُ=l'enfant|البَيْتُ=la maison|المَسْجِدُ=la mosquée|القَلَمُ=le stylo|الكِتَابُ=le livre|المُعَلِّمُ=l'enseignant|يَذْهَبُ=il va|يَكْتُبُ=il écrit",{color:"#22a06b"}],
+  ["مَنْصُوب","Fatha َ","الوَلَدَ=l'enfant|البَيْتَ=la maison|المَسْجِدَ=la mosquée|القَلَمَ=le stylo|الكِتَابَ=le livre|المُعَلِّمَ=l'enseignant|يَذْهَبَ=qu'il aille|يَكْتُبَ=qu'il écrive",{color:"#3b82d6"}],
+  ["مَجْرُور","Kasra ِ","الوَلَدِ=l'enfant|البَيْتِ=la maison|المَسْجِدِ=la mosquée|القَلَمِ=le stylo|الكِتَابِ=le livre|المُعَلِّمِ=l'enseignant",{color:"#d9822b"}],
+  ["مَجْزُوم","Sukûn ْ","يَذْهَبْ=il va|تَذْهَبْ=tu vas|يَكْتُبْ=il écrit|يَفْتَحْ=il ouvre|يَدْرُسْ=il étudie|يَلْعَبْ=il joue|تَقْرَأْ=tu lis",{color:"#9b59c8"}]]},
+{t:"La phrase complète",ta:"الجُمْلَةُ المُفِيدَةُ",h:1,b:8,
+ tip:"Une phrase complète est soit nominale (elle commence par un nom), soit verbale (elle commence par un verbe) — ce sont les deux prochaines leçons.",
+ cats:[
+  ["جُمْلَة مُفِيدَة","phrase complète","مُحَمَّدٌ مُجْتَهِدٌ=Mouhammad est studieux|مُحَمَّدٌ فِي البَيْتِ=Mouhammad est à la maison|زَيْدٌ مُسَافِرٌ=Zayd est en voyage|الوَلَدُ مُحْسِنٌ=L'enfant est bienfaisant|دَخَلَ الوَلَدُ=L'enfant est entré|خَرَجَ الرَّجُلُ=L'homme est sorti|البَيْتُ كَبِيرٌ=La maison est grande|العِلْمُ نُورٌ=Le savoir est une lumière"],
+  ["جُمْلَة غَيْر مُفِيدَة","phrase incomplète","إِنْ تَجْلِسْ=Si tu t'assois…|لَوْ نَجَحْتَ=Si tu avais réussi…|إِنْ تَذْهَبْ=Si tu pars…|هَذَا الكِتَابُ=Ce livre…|كِتَابُ الوَلَدِ=Le livre de l'enfant…|الكِتَابُ الجَدِيدُ=Le nouveau livre…|إِذَا جَاءَ=Quand il viendra…|حِينَ دَخَلْتُ=Quand je suis entré…"]]},
+{t:"La phrase nominale",ta:"الجُمْلَةُ الاسْمِيَّةُ",b:8,tip:"Phrase complète : الوَلَدُ مُحْسِنٌ — « L'enfant est bienfaisant ». Mubtada' et khabar sont presque toujours tous les deux مرفوع dans la phrase nominale simple.",
+ cats:[
+  ["مُبْتَدَأ","mubtada' (le sujet)","[الوَلَدُ] سَعِيدٌ=L'enfant est heureux|[البَيْتُ] جَمِيلٌ=La maison est belle|[العِلْمُ] نَافِعٌ=Le savoir est utile|[الطَّالِبُ] مُجْتَهِدٌ=L'étudiant est studieux|[الكِتَابُ] جَدِيدٌ=Le livre est nouveau|[الجَوُّ] بَارِدٌ=Le temps est froid"],
+  ["خَبَر","khabar (l'information)","الرَّجُلُ [كَرِيمٌ]=L'homme est généreux|المَسْجِدُ [كَبِيرٌ]=La mosquée est grande|العِلْمُ [نُورٌ]=Le savoir est une lumière|المُعَلِّمُ [مُجْتَهِدٌ]=L'enseignant est studieux|البَابُ [مَفْتُوحٌ]=La porte est ouverte|الدَّرْسُ [سَهْلٌ]=La leçon est facile"]]},
+{t:"La phrase verbale",ta:"الجُمْلَةُ الفِعْلِيَّةُ",b:8,tip:"Phrase complète : دَخَلَ الوَلَدُ — « L'enfant est entré ». Contrairement au français, en arabe le verbe se place avant le sujet dans la phrase verbale classique.",
+ cats:[
+  ["فِعْل","verbe","[دَخَلَ] الوَلَدُ=L'enfant est entré|[خَرَجَ] الرَّجُلُ=L'homme est sorti|[سَافَرَ] الأَبُ=Le père a voyagé|[جَلَسَ] الطَّالِبُ=L'étudiant s'est assis|[نَامَ] الطِّفْلُ=Le petit enfant a dormi|[وَصَلَ] الضَّيْفُ=L'invité est arrivé"],
+  ["فَاعِل","fâ'il (celui qui fait l'action)","ذَهَبَ [الوَلَدُ]=L'enfant est parti|حَضَرَ [المُعَلِّمُ]=L'enseignant est venu|رَجَعَ [الأَبُ]=Le père est revenu|نَجَحَ [الطَّالِبُ]=L'étudiant a réussi|ضَحِكَ [الطِّفْلُ]=Le petit enfant a ri|جَاءَ [الرَّجُلُ]=L'homme est venu"]]},
+{t:"Le complément d'objet direct",ta:"المَفْعُولُ بِهِ",b:8,tip:"Phrase complète : أَكَلَ الوَلَدُ التُّفَّاحَةَ — « L'enfant a mangé la pomme ». Retiens l'ordre classique : Verbe + Sujet (Damma) + COD (Fatha).",
+ cats:[
+  ["فِعْل","verbe","[أَكَلَ] الوَلَدُ التُّفَّاحَةَ=L'enfant a mangé la pomme|[شَرِبَ] الطِّفْلُ الحَلِيبَ=Le petit enfant a bu le lait|[قَرَأَ] الطَّالِبُ الكِتَابَ=L'étudiant a lu le livre|[فَتَحَ] الرَّجُلُ البَابَ=L'homme a ouvert la porte|[كَتَبَ] المُعَلِّمُ الدَّرْسَ=L'enseignant a écrit la leçon|[أَخَذَ] الأَبُ القَلَمَ=Le père a pris le stylo"],
+  ["فَاعِل","fâ'il (le sujet)","أَكَلَ [الوَلَدُ] الخُبْزَ=L'enfant a mangé le pain|شَرِبَ [الأَبُ] المَاءَ=Le père a bu l'eau|قَرَأَ [المُعَلِّمُ] الكِتَابَ=L'enseignant a lu le livre|فَتَحَ [الطَّالِبُ] النَّافِذَةَ=L'étudiant a ouvert la fenêtre|كَتَبَ [الرَّجُلُ] الرِّسَالَةَ=L'homme a écrit la lettre|أَخَذَ [الطِّفْلُ] الكُرَةَ=Le petit enfant a pris le ballon"],
+  ["مَفْعُول بِهِ","COD (Fatha)","أَكَلَ الطِّفْلُ [التُّفَّاحَةَ]=Le petit enfant a mangé la pomme|شَرِبَ الوَلَدُ [الحَلِيبَ]=L'enfant a bu le lait|قَرَأَ الأَبُ [الجَرِيدَةَ]=Le père a lu le journal|فَتَحَ المُعَلِّمُ [البَابَ]=L'enseignant a ouvert la porte|كَتَبَ الطَّالِبُ [الدَّرْسَ]=L'étudiant a écrit la leçon|أَخَذَ الرَّجُلُ [المِفْتَاحَ]=L'homme a pris la clé"]]},
+{t:"Inna et ses sœurs",ta:"إِنَّ وَأَخَوَاتُهَا",h:1,b:8,tip:"« Mouhammad est studieux » devient « Certes, Mouhammad est studieux ». Repère le changement : مُحَمَّدٌ (Damma) devient مُحَمَّدًا (Fatha).",
+ cats:[
+  ["مُبْتَدَأ","mubtada' sans إِنَّ (Damma)","[الوَلَدُ] مُجْتَهِدٌ=L'enfant est studieux|[العِلْمُ] نَافِعٌ=Le savoir est utile|[البَيْتُ] كَبِيرٌ=La maison est grande|[الكِتَابُ] جَدِيدٌ=Le livre est nouveau|[مُحَمَّدٌ] مُحْسِنٌ=Mouhammad est bienfaisant|[المُعَلِّمُ] كَرِيمٌ=L'enseignant est généreux"],
+  ["اسْم إِنَّ","ism inna, après إِنَّ (Fatha)","إِنَّ [الطَّالِبَ] مُجْتَهِدٌ=Certes, l'étudiant est studieux|إِنَّ [العِلْمَ] نُورٌ=Certes, le savoir est une lumière|إِنَّ [البَابَ] مَفْتُوحٌ=Certes, la porte est ouverte|إِنَّ [مُحَمَّدًا] كَرِيمٌ=Certes, Mouhammad est généreux|إِنَّ [الجَوَّ] بَارِدٌ=Certes, le temps est froid|إِنَّ [الدَّرْسَ] سَهْلٌ=Certes, la leçon est facile"],
+  ["خَبَر","khabar (reste Damma)","إِنَّ المَسْجِدَ [كَبِيرٌ]=Certes, la mosquée est grande|إِنَّ الرَّجُلَ [كَرِيمٌ]=Certes, l'homme est généreux|إِنَّ الكِتَابَ [جَدِيدٌ]=Certes, le livre est nouveau|إِنَّ الوَلَدَ [سَعِيدٌ]=Certes, l'enfant est heureux|إِنَّ البَيْتَ [جَمِيلٌ]=Certes, la maison est belle|إِنَّ المُعَلِّمَ [مُجْتَهِدٌ]=Certes, l'enseignant est studieux"]]},
+{t:"Kâna et ses sœurs",ta:"كَانَ وَأَخَوَاتُهَا",h:1,b:8,tip:"« Mouhammad est studieux » devient « Mouhammad était studieux ». C'est l'inverse d'إنّ : ici c'est le deuxième mot (le khabar) qui passe à la Fatha.",
+ cats:[
+  ["اسْم كَانَ","ism kâna (Damma)","كَانَ [الوَلَدُ] مُجْتَهِدًا=L'enfant était studieux|كَانَ [الجَوُّ] بَارِدًا=Le temps était froid|كَانَ [البَيْتُ] كَبِيرًا=La maison était grande|كَانَ [الكِتَابُ] جَدِيدًا=Le livre était nouveau|كَانَ [مُحَمَّدٌ] مُحْسِنًا=Mouhammad était bienfaisant|كَانَ [الطَّالِبُ] سَعِيدًا=L'étudiant était heureux"],
+  ["خَبَر كَانَ","khabar kâna (Fatha)","كَانَ الرَّجُلُ [كَرِيمًا]=L'homme était généreux|كَانَ المَسْجِدُ [كَبِيرًا]=La mosquée était grande|كَانَ العِلْمُ [نَافِعًا]=Le savoir était utile|كَانَ البَابُ [مَفْتُوحًا]=La porte était ouverte|كَانَ الدَّرْسُ [سَهْلًا]=La leçon était facile|كَانَ المُعَلِّمُ [مُجْتَهِدًا]=L'enseignant était studieux"],
+  ["خَبَر","khabar sans كَانَ (Damma)","الرَّجُلُ [كَرِيمٌ]=L'homme est généreux|المَسْجِدُ [كَبِيرٌ]=La mosquée est grande|العِلْمُ [نَافِعٌ]=Le savoir est utile|البَابُ [مَفْتُوحٌ]=La porte est ouverte|الدَّرْسُ [سَهْلٌ]=La leçon est facile|الجَوُّ [بَارِدٌ]=Le temps est froid"]]},
+{t:"La préposition — harf jarr",ta:"حَرْفُ الجَرِّ",b:8,tip:"« La mosquée » → « Dans la mosquée ». Toute préposition arabe « attire » le mot suivant vers la Kasra, sans exception.",
+ cats:[
+  ["حَرْف جَرّ","préposition","[فِي] المَسْجِدِ=dans la mosquée|[عَلَى] المَكْتَبِ=sur le bureau|[إِلَى] المَدْرَسَةِ=vers l'école|[مِنْ] السُّوقِ=du marché|[عَنْ] الدَّرْسِ=au sujet de la leçon|[حَتَّى] المَسَاءِ=jusqu'au soir"],
+  ["مَرْفُوع","mot seul (Damma)","[المَسْجِدُ] كَبِيرٌ=La mosquée est grande|[البَيْتُ] جَمِيلٌ=La maison est belle|[الشَّارِعُ] طَوِيلٌ=La rue est longue|[السُّوقُ] قَرِيبٌ=Le marché est proche|[المَكْتَبُ] جَدِيدٌ=Le bureau est neuf|[المَدْرَسَةُ] بَعِيدَةٌ=L'école est loin"],
+  ["مَجْرُور","après une préposition (Kasra)","ذَهَبْتُ إِلَى [السُّوقِ]=Je suis allé au marché|الكِتَابُ عَلَى [الطَّاوِلَةِ]=Le livre est sur la table|الأَبُ فِي [البَيْتِ]=Le père est à la maison|جَلَسَ الوَلَدُ فِي [المَسْجِدِ]=L'enfant s'est assis dans la mosquée|خَرَجْتُ مِنَ [المَدْرَسَةِ]=Je suis sorti de l'école|تَكَلَّمْتُ عَنِ [الدَّرْسِ]=J'ai parlé de la leçon"]]},
+{t:"L'annexion",ta:"الإِضَافَةُ",b:8,tip:"Attention à la faute fréquente : on ne dit jamais « الكِتَابُ الوَلَدِ » — le premier mot d'une annexion ne prend jamais ال.",
+ cats:[
+  ["مُضَاف","mudâf (1er mot, sans ال)","[كِتَابُ] الوَلَدِ=le livre de l'enfant|[بَابُ] البَيْتِ=la porte de la maison|[قَلَمُ] الطَّالِبِ=le stylo de l'étudiant|[سَيَّارَةُ] الأَبِ=la voiture du père|[مِفْتَاحُ] المَدْرَسَةِ=la clé de l'école|[بَيْتُ] المُعَلِّمِ=la maison de l'enseignant"],
+  ["مُضَاف إِلَيْهِ","mudâf ilayhi (2e mot, Kasra)","دَفْتَرُ [الطَّالِبِ]=le cahier de l'étudiant|حَقِيبَةُ [البِنْتِ]=le cartable de la fille|غُرْفَةُ [الأَبِ]=la chambre du père|نَافِذَةُ [البَيْتِ]=la fenêtre de la maison|مُعَلِّمُ [المَدْرَسَةِ]=l'enseignant de l'école|مِفْتَاحُ [السَّيَّارَةِ]=la clé de la voiture"]]},
+{t:"L'adjectif",ta:"النَّعْتُ",b:8,tip:"Les 4 accords à vérifier à chaque fois : genre, nombre, détermination, et cas. Ici مُجْتَهِدٌ copie tout : masculin, singulier, indéfini, Damma.",
+ cats:[
+  ["مَنْعُوت","le nom décrit","[بَيْتٌ] كَبِيرٌ=une grande maison|[كِتَابٌ] جَدِيدٌ=un nouveau livre|[طَالِبٌ] مُجْتَهِدٌ=un étudiant studieux|[قَلَمٌ] جَمِيلٌ=un beau stylo|[وَلَدٌ] صَغِيرٌ=un petit garçon|[بَابٌ] مَفْتُوحٌ=une porte ouverte"],
+  ["نَعْت","l'adjectif","سَيَّارَةٌ [جَدِيدَةٌ]=une voiture neuve|طَالِبَةٌ [نَشِيطَةٌ]=une étudiante active|مَدْرَسَةٌ [كَبِيرَةٌ]=une grande école|بِنْتٌ [صَغِيرَةٌ]=une petite fille|كِتَابٌ [مُفِيدٌ]=un livre utile|رَجُلٌ [طَوِيلٌ]=un homme grand"]]},
+{t:"La coordination",ta:"العَطْفُ",b:8,
+ tip:"و est comme un miroir : le deuxième mot copie toujours la voyelle finale du premier, quel que soit le cas.",
+ cats:[
+  ["ضَمَّة + ضَمَّة","Damma + Damma","دَخَلَ مُحَمَّدٌ وَيَاسِرٌ=Mouhammad et Yassir sont entrés|جَاءَ الأَبُ وَالأُمُّ=Le père et la mère sont venus|خَرَجَ الوَلَدُ وَالرَّجُلُ=L'enfant et l'homme sont sortis|جَلَسَ الطَّالِبُ وَالمُعَلِّمُ=L'étudiant et l'enseignant se sont assis",{color:"#22a06b"}],
+  ["فَتْحَة + فَتْحَة","Fatha + Fatha","رَأَيْتُ مُحَمَّدًا وَيَاسِرًا=J'ai vu Mouhammad et Yassir|رَأَيْتُ الأَبَ وَالأُمَّ=J'ai vu le père et la mère|شَرِبْتُ الحَلِيبَ وَالمَاءَ=J'ai bu le lait et l'eau|فَتَحْتُ البَابَ وَالنَّافِذَةَ=J'ai ouvert la porte et la fenêtre",{color:"#3b82d6"}],
+  ["كَسْرَة + كَسْرَة","Kasra + Kasra","سَلَّمْتُ عَلَى مُحَمَّدٍ وَيَاسِرٍ=J'ai salué Mouhammad et Yassir|ذَهَبْتُ إِلَى المَدْرَسَةِ وَالسُّوقِ=Je suis allé à l'école et au marché|نَظَرْتُ إِلَى الشَّمْسِ وَالقَمَرِ=J'ai regardé le soleil et la lune|سَلَّمْتُ عَلَى الأَبِ وَالأُمِّ=J'ai salué le père et la mère",{color:"#d9822b"}]]},
+{t:"Les pronoms démonstratifs",ta:"اسْمُ الإِشَارَةِ",h:1,b:8,
+ tip:"Comparaison utile : هَذَا كِتَابٌ (complète : « Ceci est un livre ») mais هَذَا الكِتَابُ… (incomplète : « Ce livre… », on attend la suite).",
+ cats:[
+  ["هَذَا","proche · masculin","هَذَا كِتَابٌ=Ceci est un livre|هَذَا قَلَمٌ=Ceci est un stylo|هَذَا بَيْتٌ=Ceci est une maison|هَذَا وَلَدٌ=Ceci est un garçon"],
+  ["هَذِهِ","proche · féminin","هَذِهِ سَيَّارَةٌ=Ceci est une voiture|هَذِهِ مَدْرَسَةٌ=Ceci est une école|هَذِهِ طَاوِلَةٌ=Ceci est une table|هَذِهِ بِنْتٌ=Ceci est une fille"],
+  ["ذَلِكَ","éloigné · masculin","ذَلِكَ طَالِبٌ=Cela est un étudiant|ذَلِكَ بَابٌ=Cela est une porte|ذَلِكَ مِفْتَاحٌ=Cela est une clé|ذَلِكَ رَجُلٌ=Cela est un homme"],
+  ["تِلْكَ","éloigné · féminin","تِلْكَ طَالِبَةٌ=Cela est une étudiante|تِلْكَ غُرْفَةٌ=Cela est une chambre|تِلْكَ نَافِذَةٌ=Cela est une fenêtre|تِلْكَ مُعَلِّمَةٌ=Cela est une enseignante"]]},
+{t:"Les pronoms",ta:"الضَّمَائِرُ",h:1,
+ tip:"Le pronom attaché ne change jamais de forme selon le cas (Damma/Fatha/Kasra) du nom auquel il est collé.",
+ cats:[
+  ["ضَمِير مُنْفَصِل","pronom séparé","أَنَا=je|أَنْتَ=tu (masc.)|أَنْتِ=tu (fém.)|هُوَ=il|هِيَ=elle|نَحْنُ=nous"],
+  ["ضَمِير مُتَّصِل","pronom attaché","كِتَابِي=mon livre|كِتَابُكَ=ton livre (masc.)|كِتَابُكِ=ton livre (fém.)|كِتَابُهُ=son livre (à lui)|كِتَابُهَا=son livre (à elle)|بَيْتِي=ma maison|بَيْتُهُ=sa maison"]]},
+{t:"Le pronom relatif",ta:"الاسْمُ المَوْصُولُ",h:1,b:8,tip:"الذي / التي ne s'emploient qu'après un nom défini (avec ال). Après un nom indéfini, on ne met rien du tout.",
+ cats:[
+  ["الَّذِي","nom masculin → الَّذِي","القَلَمُ [___] عَلَى الطَّاوِلَةِ جَمِيلٌ=Le stylo qui est sur la table est beau|الوَلَدُ [___] يَلْعَبُ سَعِيدٌ=L'enfant qui joue est heureux|الكِتَابُ [___] فِي البَيْتِ جَدِيدٌ=Le livre qui est dans la maison est nouveau|الرَّجُلُ [___] فِي المَسْجِدِ كَرِيمٌ=L'homme qui est dans la mosquée est généreux|البَيْتُ [___] فِي الشَّارِعِ كَبِيرٌ=La maison qui est dans la rue est grande|المُعَلِّمُ [___] فِي المَدْرَسَةِ مُجْتَهِدٌ=L'enseignant qui est à l'école est studieux",{ins:"Trouve les phrases où il faut mettre « الَّذِي » (nom masculin)"}],
+  ["الَّتِي","nom féminin → الَّتِي","الدَّرَّاجَةُ [___] فِي الشَّارِعِ جَمِيلَةٌ=Le vélo qui est dans la rue est beau|السَّيَّارَةُ [___] أَمَامَ البَيْتِ جَدِيدَةٌ=La voiture qui est devant la maison est neuve|البِنْتُ [___] تَلْعَبُ سَعِيدَةٌ=La fille qui joue est heureuse|المَدْرَسَةُ [___] فِي المَدِينَةِ كَبِيرَةٌ=L'école qui est dans la ville est grande|الطَّالِبَةُ [___] فِي الصَّفِّ مُجْتَهِدَةٌ=L'étudiante qui est en classe est studieuse|الطَّاوِلَةُ [___] فِي الغُرْفَةِ طَوِيلَةٌ=La table qui est dans la chambre est longue",{ins:"Trouve les phrases où il faut mettre « الَّتِي » (nom féminin)"}]]},
+{t:"Le passé et le présent",ta:"المَاضِي وَالمُضَارِعُ",h:1,
+ tip:"Au passé : suffixes ـتُ / ـتَ / ـتِ. Au présent : préfixes أ / ت / ي, et un suffixe ـِينَ pour « tu » au féminin.",
+ cats:[
+  ["المَاضِي","passé","فَتَحَ=il a ouvert|فَتَحْتُ=j'ai ouvert|فَتَحْتَ=tu as ouvert|فَتَحْتِ=tu as ouvert (fém.)|كَتَبَ=il a écrit|كَتَبْتُ=j'ai écrit|كَتَبْتَ=tu as écrit"],
+  ["المُضَارِع","présent","يَفْتَحُ=il ouvre|أَفْتَحُ=j'ouvre|تَفْتَحُ=tu ouvres|تَفْتَحِينَ=tu ouvres (fém.)|يَكْتُبُ=il écrit|أَكْتُبُ=j'écris|تَكْتُبُ=tu écris"]]},
+{t:"Le duel",ta:"المُثَنَّى",h:1,
+ tip:"Le duel n'existe presque pas en français : ni singulier, ni pluriel, c'est une catégorie à part entière pour parler de « deux ».",
+ cats:[
+  ["المُفْرَد","singulier","الوَلَدُ=l'enfant|الكِتَابُ=le livre|القَلَمُ=le stylo|البَابُ=la porte|السَّيَّارَةُ=la voiture|المَدْرَسَةُ=l'école|الطَّالِبُ=l'étudiant"],
+  ["المُثَنَّى","duel (deux)","الوَلَدَانِ=les deux enfants|الكِتَابَانِ=les deux livres|القَلَمَانِ=les deux stylos|البَابَانِ=les deux portes|السَّيَّارَتَانِ=les deux voitures|المَدْرَسَتَانِ=les deux écoles|الطَّالِبَانِ=les deux étudiants"]]},
+{t:"Le pluriel masculin sain",ta:"جَمْعُ المُذَكَّرِ السَّالِمِ",h:1,
+ tip:"« Sain » (سالم) signifie que le mot singulier n'a pas changé — on ajoute simplement une terminaison, contrairement au pluriel brisé (leçon 22).",
+ cats:[
+  ["المُفْرَد","singulier","المُسْلِمُ=le musulman|المُهَنْدِسُ=l'ingénieur|المُعَلِّمُ=l'enseignant|المُدَرِّسُ=l'enseignant|المُؤْمِنُ=le croyant|العَامِلُ=l'ouvrier|المُجْتَهِدُ=le studieux"],
+  ["جَمْع المُذَكَّر السَّالِم","pluriel masculin sain","المُسْلِمُونَ=les musulmans|المُهَنْدِسُونَ=les ingénieurs|المُعَلِّمُونَ=les enseignants|المُدَرِّسُونَ=les enseignants|المُؤْمِنُونَ=les croyants|العَامِلُونَ=les ouvriers|المُجْتَهِدُونَ=les studieux"]]},
+{t:"Le pluriel féminin sain",ta:"جَمْعُ المُؤَنَّثِ السَّالِمِ",h:1,
+ tip:"Beaucoup de mots modernes ou empruntés (même parfois masculins) prennent ce pluriel en اتٌ par défaut.",
+ cats:[
+  ["المُفْرَد","singulier","المُسْلِمَةُ=la musulmane|الطَّالِبَةُ=l'étudiante|المُعَلِّمَةُ=l'enseignante|السَّيَّارَةُ=la voiture|المُهَنْدِسَةُ=l'ingénieure|السَّاعَةُ=l'heure|المُدَرِّسَةُ=l'enseignante"],
+  ["جَمْع المُؤَنَّث السَّالِم","pluriel féminin sain","المُسْلِمَاتُ=les musulmanes|الطَّالِبَاتُ=les étudiantes|المُعَلِّمَاتُ=les enseignantes|السَّيَّارَاتُ=les voitures|المُهَنْدِسَاتُ=les ingénieures|السَّاعَاتُ=les heures|المُدَرِّسَاتُ=les enseignantes"]]},
+{t:"Le pluriel brisé",ta:"جَمْعُ التَّكْسِيرِ",h:1,
+ tip:"C'est le pluriel le plus fréquent en arabe : il n'existe pas de règle unique, il faut mémoriser chaque modèle petit à petit.",
+ cats:[
+  ["المُفْرَد","singulier","كِتَابٌ=un livre|وَلَدٌ=un enfant|رَجُلٌ=un homme|بَيْتٌ=une maison|قَلَمٌ=un stylo|مَدْرَسَةٌ=une école|بَابٌ=une porte|مَسْجِدٌ=une mosquée"],
+  ["جَمْع التَّكْسِير","pluriel brisé","كُتُبٌ=des livres|أَوْلَادٌ=des enfants|رِجَالٌ=des hommes|بُيُوتٌ=des maisons|أَقْلَامٌ=des stylos|مَدَارِسُ=des écoles|أَبْوَابٌ=des portes|مَسَاجِدُ=des mosquées"]]},
+{t:"Les prépositions du subjonctif — an-Nawâsib",ta:"النَّوَاصِبُ",h:1,b:8,tip:"Repère l'indice sonore : après ces prépositions, la dernière lettre du verbe présent porte une Fatha (« a ») au lieu du « u » final habituel.",
+ cats:[
+  ["النَّوَاصِب","particule du subjonctif","أُرِيدُ [أَنْ] تَدْرُسَ=Je veux que tu étudies|[لَنْ] أَذْهَبَ إِلَى السُّوقِ اليَوْمَ=Je n'irai pas au marché aujourd'hui|جِئْتُ [كَيْ] أَتَعَلَّمَ=Je suis venu pour apprendre|أَدْرُسُ [لِكَيْ] أَنْجَحَ=J'étudie pour réussir|[إِذَنْ] تَنْجَحَ=Alors tu réussiras"],
+  ["مَنْصُوب","verbe au subjonctif (Fatha)","أُرِيدُ أَنْ [تَدْرُسَ]=Je veux que tu étudies|لَنْ [أَذْهَبَ] إِلَى السُّوقِ اليَوْمَ=Je n'irai pas au marché aujourd'hui|أَخْرُجُ لِـ[أَشْتَرِيَ] خُبْزًا=Je sors pour acheter du pain|جِئْتُ كَيْ [أَتَعَلَّمَ]=Je suis venu pour apprendre|يُرِيدُ أَنْ [يَكْتُبَ] الدَّرْسَ=Il veut écrire la leçon|أَدْرُسُ لِكَيْ [أَنْجَحَ]=J'étudie pour réussir"],
+  ["مَرْفُوع","verbe à l'indicatif (Damma)","[تَدْرُسُ] الآنَ=Tu étudies maintenant|[أَذْهَبُ] إِلَى السُّوقِ كُلَّ يَوْمٍ=Je vais au marché chaque jour|[يَكْتُبُ] الوَلَدُ الدَّرْسَ=L'enfant écrit la leçon|[يَقْرَأُ] الطَّالِبُ الكِتَابَ=L'étudiant lit le livre|[أَلْعَبُ] فِي الحَدِيقَةِ=Je joue dans le jardin|[تَفْتَحُ] البَابَ=Tu ouvres la porte"]]},
+{t:"Les prépositions du jussif — al-Jawâzim",ta:"الجَوَازِمُ",h:1,b:8,tip:"مجزوم = plus de voyelle finale du tout (Sukûn ْ) : le mot « s'arrête net ».",
+ cats:[
+  ["الجَوَازِم","particule du jussif","[لَمْ] أَذْهَبْ=Je ne suis pas parti|[لَمَّا] أَذْهَبْ=Je ne suis pas encore parti|[لَا] تَذْهَبْ=Ne pars pas !|[إِنْ] تَدْرُسْ تَنْجَحْ=Si tu étudies, tu réussiras"],
+  ["مَجْزُوم","verbe au jussif (Sukûn)","لَمْ [أَذْهَبْ]=Je ne suis pas parti|لَا [تَذْهَبْ]=Ne pars pas !|إِنْ [تَدْرُسْ] تَنْجَحْ=Si tu étudies, tu réussiras|لَمْ [يَكْتُبْ] الوَلَدُ الدَّرْسَ=L'enfant n'a pas écrit la leçon|لَا [تَأْكُلْ] كَثِيرًا=Ne mange pas trop|لَمَّا [يَصِلْ] الضَّيْفُ=L'invité n'est pas encore arrivé"],
+  ["مَرْفُوع","verbe à l'indicatif (Damma)","[تَذْهَبُ] إِلَى المَدْرَسَةِ=Tu vas à l'école|[أَذْهَبُ] إِلَى السُّوقِ=Je vais au marché|[يَكْتُبُ] الوَلَدُ الدَّرْسَ=L'enfant écrit la leçon|[تَأْكُلُ] الخُبْزَ=Tu manges le pain|[يَدْرُسُ] الطَّالِبُ=L'étudiant étudie|[يَلْعَبُ] الطِّفْلُ=Le petit enfant joue"]]}
+];
+
+function parseWords(s){return s.split('|').map(p=>{const i=p.indexOf('=');return i<0?{ar:p.trim(),fr:''}:{ar:p.slice(0,i).trim(),fr:p.slice(i+1).trim()};}).filter(x=>x.ar);}
+function buildLessons(){
+  return RAW.map(r=>({title:r.t,titleAr:r.ta,tip:r.tip||'',hideFr:!!r.h,boxes:r.b||0,
+    cats:r.cats.map(c=>Object.assign({ar:c[0],fr:c[1],words:parseWords(c[2])},c[3]||{}))}));
+}
+const DEFAULTS=buildLessons();
+function normalizeLessons(arr){
+  return DEFAULTS.map((d,i)=>{
+    const l=arr&&arr[i];
+    if(l&&Array.isArray(l.cats)&&l.cats.every(c=>c&&Array.isArray(c.words))) return l;
+    return JSON.parse(JSON.stringify(d));
+  });
+}
+function load(){
+  let d={};
+  try{d=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){d={};}
+  return {
+    lessons:normalizeLessons(d.lessons),
+    progress:d.progress||{},
+    settings:Object.assign({boxes:12,rounds:3,frMode:'lesson',sound:true,torch:110},d.settings||{})
+  };
+}
+let state=load();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+const usableCats = L => L.cats.map((c,k)=>({c,k})).filter(o=>o.c.words.length>=2).map(o=>o.k);
+const isReady = L => usableCats(L).length>=2;
+const catColor = (L,k) => L.cats[k].color||PALETTE[k%4];
+const catTag = c => c.ar&&c.fr?c.ar+' · '+c.fr:(c.ar||c.fr);
+const countWords = L => L.cats.reduce((n,c)=>n+c.words.length,0);
+
+/* ---------- sons ---------- */
+let ac=null;
+function tone(f,d,type,v,at){
+  if(!state.settings.sound) return;
+  try{
+    ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+    const o=ac.createOscillator(),g=ac.createGain(),t0=ac.currentTime+(at||0);
+    o.type=type||'sine';o.frequency.value=f;
+    g.gain.setValueAtTime(0.0001,t0);g.gain.linearRampToValueAtTime(v||.08,t0+.01);g.gain.exponentialRampToValueAtTime(.0001,t0+d);
+    o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+.03);
+  }catch(e){}
+}
+const sfx={
+  ok(){tone(660,.14,'triangle',.09);tone(880,.22,'triangle',.08,.1);},
+  no(){tone(170,.28,'sawtooth',.05);},
+  tick(){tone(1100,.05,'square',.03);},
+  win(){[523,659,784,1047].forEach((f,i)=>tone(f,.28,'triangle',.08,i*.12));}
+};
+
+/* ---------- vues ---------- */
+function showView(v){
+  $('#picker').hidden=v!=='picker';
+  $('#game').hidden=v!=='game';
+  $('#btnLessons').hidden=v!=='game';
+  window.scrollTo(0,0);
+}
+function renderPicker(){
+  const box=$('#tiles');box.innerHTML='';
+  state.lessons.forEach((L,i)=>{
+    const pr=state.progress[i];
+    const filled=pr&&pr.of?Math.max(pr.best>0?1:0,Math.round(pr.best/pr.of*3)):0;
+    const t=document.createElement('div');
+    t.className='tile';t.tabIndex=0;t.setAttribute('role','button');
+    t.setAttribute('aria-label','Leçon '+(i+1)+' : '+L.title);
+    t.innerHTML=
+      '<span class="n" lang="ar">'+arNum(i+1)+'</span> <span class="l">Leçon '+(i+1)+' · '+countWords(L)+' mots</span>'+
+      '<span class="t">'+esc(L.title)+'</span>'+
+      '<span class="ta" lang="ar">'+esc(L.titleAr)+'</span>'+
+      '<div class="foot"><span class="stars">'+[0,1,2].map(k=>starSvg(k<filled)).join('')+'</span>'+
+      '<button class="btn small" type="button" aria-label="Ajouter des mots à la leçon '+(i+1)+'">+ Mots</button></div>';
+    const go=()=>startLesson(i);
+    t.addEventListener('click',go);
+    t.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===t){e.preventDefault();go();}});
+    t.querySelector('button').addEventListener('click',e=>{e.stopPropagation();openWords(i);});
+    box.appendChild(t);
+  });
+}
+
+/* ---------- jeu ---------- */
+let G=null;
+const room=$('#room'),grid=$('#grid');
+
+function startLesson(i){
+  const L=state.lessons[i];
+  if(!isReady(L)){openWords(i);return;}
+  G={li:i,round:0,rounds:state.settings.rounds,order:shuffle(usableCats(L)),used:new Set(),stars:[],lit:false,over:false,cards:[],total:0,found:0,errors:0,points:0,target:0,totalPoints:0};
+  showView('game');
+  $('#gNum').textContent='Leçon '+(i+1);
+  $('#gName').textContent=L.title;
+  $('#gNameAr').textContent=L.titleAr;
+  startRound();
+}
+function orderedPool(words){
+  const fresh=words.filter(x=>!G.used.has(x.ar)),old=words.filter(x=>G.used.has(x.ar));
+  return shuffle(fresh).concat(shuffle(old));
+}
+function startRound(){
+  const L=state.lessons[G.li];
+  const order=usableCats(L);               // reprend les mots ajoutés entre deux manches
+  G.order=G.order.filter(k=>order.includes(k));
+  order.forEach(k=>{if(!G.order.includes(k))G.order.push(k);});
+  const n=Math.min(state.settings.boxes,L.boxes||99);
+  const t=G.order[G.round%G.order.length];
+  const kT=Math.max(2,Math.round(n*0.4));
+  const tw=orderedPool(L.cats[t].words).slice(0,kT).map(x=>({ar:x.ar,fr:x.fr,cat:t}));
+  const pools=G.order.filter(k=>k!==t).map(k=>({k,list:orderedPool(L.cats[k].words)}));
+  const need=n-tw.length;const ow=[];let guard=0;
+  while(ow.length<need&&pools.some(p=>p.list.length)&&guard++<500){
+    for(const p of pools){
+      if(ow.length>=need)break;
+      const x=p.list.shift();
+      if(x)ow.push({ar:x.ar,fr:x.fr,cat:p.k});
+    }
+  }
+  const all=tw.concat(ow);
+  all.forEach(c=>G.used.add(c.ar));
+  G.cards=shuffle(all).map((c,i)=>Object.assign({id:i,state:'hidden'},c));
+  G.target=t;G.total=tw.length;G.found=0;G.errors=0;G.points=0;G.over=false;G.lit=false;
+  renderRound();
+}
+const plain = s => s.replace(/[\[\]]/g,'');
+function markup(ar){
+  return esc(ar).replace(/\[([^\]]*)\]/g,(m,w)=>w.trim()==='___'?'<mark class="hl blank">&nbsp;</mark>':'<mark class="hl">'+w+'</mark>');
+}
+const baseLen = s => s.replace(/[\u064B-\u065F\u0670\u0640]/g,'').replace(/\s/g,'').length;
+function fontFor(ar){
+  ar=plain(ar);
+  const n=baseLen(ar);
+  if(/\s/.test(ar.trim())) return n<=16?1.45:(n<=22?1.25:1.1);
+  return n<=4?2.1:(n<=6?1.85:(n<=8?1.6:1.4));
+}
+function frVisible(L){
+  const m=state.settings.frMode;
+  return m==='always'?true:(m==='never'?false:!L.hideFr);
+}
+function renderRound(){
+  const L=state.lessons[G.li],cat=L.cats[G.target];
+  $('#instrAr').textContent='اِبْحَثْ عَنْ: '+(cat.ar||cat.fr);
+  const ctx=G.cards.some(c=>c.ar.indexOf('[')>=0);
+  $('#instrFr').textContent=cat.ins||(ctx?('Dans chaque phrase, un mot est surligné. Trouve les cases où il est « '+(cat.fr||cat.ar)+' »'):('Trouve les cases « '+(cat.fr||cat.ar)+' »'));
+  grid.innerHTML='';
+  G.cards.forEach((c,i)=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='card'+(/\s/.test(plain(c.ar).trim())?' phrase':'');
+    b.style.setProperty('--rot',((Math.random()*2.6)-1.3).toFixed(2)+'deg');
+    b.style.setProperty('--fs',fontFor(c.ar)+'rem');
+    b.innerHTML='<span class="ar" lang="ar" dir="rtl">'+markup(c.ar)+'</span><span class="fr">'+esc(c.fr)+'</span><span class="tag"></span>';
+    b.addEventListener('click',()=>pick(i));
+    b.addEventListener('focus',()=>{const r=room.getBoundingClientRect(),q=b.getBoundingClientRect();setTorch(q.left-r.left+q.width/2,q.top-r.top+q.height/2);});
+    grid.appendChild(b);
+  });
+  room.style.setProperty('--r',state.settings.torch+'px');
+  room.classList.toggle('nofr',!frVisible(L));
+  setLight(false,true);
+  $('#result').hidden=true;
+  hud();
+  requestAnimationFrame(()=>{
+    const r=room.getBoundingClientRect();
+    room.style.touchAction=r.height<=window.innerHeight*0.92?'none':'pan-y';
+    setTorch(r.width/2,Math.min(r.height*0.55,r.height-60));
+  });
+  if(G.round>0)$('#game').scrollIntoView({block:'start'});
+}
+function hud(){
+  $('#hRound').textContent=(G.round+1)+'/'+G.rounds;
+  $('#hFound').textContent=G.found+'/'+G.total;
+  $('#hErr').textContent=G.errors;
+  $('#hPts').textContent=G.points;
+}
+function pick(i){
+  if(!G||G.over)return;
+  const c=G.cards[i];if(c.state!=='hidden')return;
+  const el=grid.children[i],L=state.lessons[G.li];
+  const tag=el.querySelector('.tag'),col=catColor(L,c.cat);
+  tag.textContent=catTag(L.cats[c.cat]);
+  el.style.setProperty('--c',col);
+  tag.style.background=col;
+  if(c.cat===G.target){
+    c.state='found';el.classList.add('found');
+    G.found++;G.points+=G.lit?1:2;
+    sfx.ok();hud();
+    if(G.found===G.total)setTimeout(endRound,650);
+  }else{
+    c.state='wrong';el.classList.add('wrong');
+    G.errors++;sfx.no();hud();
+  }
+}
+function setLight(on,silent){
+  G.lit=on;
+  room.classList.toggle('lit',on);
+  $('#sw').setAttribute('aria-pressed',on?'true':'false');
+  $('#swLabel').textContent=on?'Éteindre la lumière':'Allumer la lumière';
+  if(!silent)sfx.tick();
+}
+function endRound(){
+  G.over=true;
+  setLight(true,true);
+  const L=state.lessons[G.li];
+  const stars=G.errors===0?3:(G.errors<=2?2:1);
+  G.stars.push(stars);G.totalPoints+=G.points;
+  const last=G.round>=G.rounds-1;
+  const praise=stars===3?'مُمْتَاز!':(stars===2?'جَيِّد جِدًّا!':'حَاوِلْ مَرَّةً أُخْرَى!');
+  const msg=stars===3?'Parfait, aucune erreur !':(stars===2?'Très bien, presque sans erreur.':'Continue, tu vas y arriver.');
+  let html='<div class="stars">'+[0,1,2].map(k=>starSvg(k<stars)).join('')+'</div>'+
+    '<p class="praise" lang="ar">'+praise+'</p><p class="msg">'+msg+' '+G.points+' points.</p>';
+  if(L.tip)html+='<p class="tipbox"><b>À retenir.</b> <span>'+esc(L.tip)+'</span></p>';
+  html+='<div class="actions">';
+  if(!last){
+    html+='<button class="btn primary" id="rNext" type="button">Manche suivante</button>';
+  }else{
+    const sum=G.stars.reduce((a,b)=>a+b,0),of=G.rounds*3;
+    const prev=state.progress[G.li];
+    if(!prev||prev.of!==of||sum>prev.best)state.progress[G.li]={best:sum,of};
+    save();
+    html+='<p class="msg" style="flex-basis:100%;margin:0">Leçon terminée : '+sum+' étoiles sur '+of+', '+G.totalPoints+' points.</p>';
+    html+='<button class="btn primary" id="rAgain" type="button">Rejouer la leçon</button><button class="btn" id="rAll" type="button">Toutes les leçons</button>';
+  }
+  html+='</div>';
+  const r=$('#result');r.innerHTML=html;r.hidden=false;
+  sfx.win();
+  const nx=$('#rNext');if(nx)nx.addEventListener('click',()=>{G.round++;startRound();});
+  const ag=$('#rAgain');if(ag)ag.addEventListener('click',()=>startLesson(G.li));
+  const al=$('#rAll');if(al)al.addEventListener('click',goPicker);
+  r.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function goPicker(){G=null;renderPicker();showView('picker');}
+
+/* ---------- lampe torche ---------- */
+let pend=null,raf=0;
+function setTorch(x,y){
+  pend={x,y};
+  if(raf)return;
+  raf=requestAnimationFrame(()=>{raf=0;room.style.setProperty('--x',pend.x+'px');room.style.setProperty('--y',pend.y+'px');});
+}
+function onPtr(e){
+  const r=room.getBoundingClientRect();
+  setTorch(e.clientX-r.left,e.clientY-r.top-(e.pointerType==='touch'?34:0));
+}
+room.addEventListener('pointermove',onPtr);
+room.addEventListener('pointerdown',onPtr);
+$('#sw').addEventListener('click',()=>{if(G&&!G.over)setLight(!G.lit);});
+document.addEventListener('keydown',e=>{
+  if((e.key==='l'||e.key==='L')&&G&&!G.over&&!$('#game').hidden&&!document.querySelector('dialog[open]')&&!/INPUT|TEXTAREA|SELECT/.test((e.target.tagName||''))){setLight(!G.lit);}
+});
+$('#btnLessons').addEventListener('click',goPicker);
+
+/* ---------- ajout de mots ---------- */
+let M=-1,focusCat=-1;
+function textToWords(t){
+  return t.split('\n').map(l=>l.trim()).filter(Boolean).map(l=>{
+    const m=l.match(/^(.*?)\s*[=|]\s*(.*)$/);
+    return m?{ar:m[1].trim(),fr:m[2].trim()}:{ar:l,fr:''};
+  }).filter(x=>x.ar);
+}
+function addWords(k,list){
+  const L=state.lessons[M],c=L.cats[k];
+  let added=0;
+  list.forEach(x=>{
+    if(!c.words.some(y=>y.ar===x.ar)){c.words.push({ar:x.ar,fr:x.fr,added:true});added++;}
+  });
+  if(added){save();}
+  return added;
+}
+function openWords(i){
+  M=i;focusCat=-1;
+  $('#wmErr').textContent='';$('#wmBulk').value='';
+  renderWords();
+  $('#dlgWords').showModal();
+}
+function renderWords(){
+  const L=state.lessons[M];
+  $('#wmTitle').textContent='Leçon '+(M+1)+' · '+L.title;
+  const box=$('#wmCats');box.innerHTML='';
+  const sel=$('#wmBulkCat');sel.innerHTML='';
+  L.cats.forEach((c,k)=>{
+    const o=document.createElement('option');o.value=k;o.textContent=catTag(c);sel.appendChild(o);
+    const fs=document.createElement('fieldset');
+    const lg=document.createElement('legend');lg.textContent=catTag(c);fs.appendChild(lg);
+    const chips=document.createElement('div');chips.className='chips';
+    c.words.forEach((x,j)=>{
+      const s=document.createElement('span');s.className='chip'+(x.added?' added':'');
+      s.innerHTML='<span class="a" lang="ar" dir="rtl">'+esc(x.ar)+'</span>'+(x.fr?'<span class="f">'+esc(x.fr)+'</span>':'')+
+        '<button type="button" aria-label="Retirer '+esc(x.ar)+'">×</button>';
+      s.querySelector('button').addEventListener('click',()=>{c.words.splice(j,1);save();focusCat=k;renderWords();});
+      chips.appendChild(s);
+    });
+    fs.appendChild(chips);
+    const row=document.createElement('div');row.className='addrow';
+    row.innerHTML='<input type="text" class="ar-in" dir="rtl" lang="ar" placeholder="كَلِمَة" aria-label="Mot en arabe"><input type="text" placeholder="Traduction (facultatif)" aria-label="Traduction"><button class="btn small" type="button">Ajouter</button>';
+    const ia=row.children[0],ifr=row.children[1],btn=row.children[2];
+    const doAdd=()=>{
+      const ar=ia.value.trim();
+      if(!ar){$('#wmErr').textContent='Écris d\u2019abord le mot en arabe.';ia.focus();return;}
+      if(c.words.some(y=>y.ar===ar)){$('#wmErr').textContent='Ce mot est déjà dans cette catégorie.';return;}
+      addWords(k,[{ar,fr:ifr.value.trim()}]);
+      $('#wmErr').textContent='';focusCat=k;renderWords();
+    };
+    btn.addEventListener('click',doAdd);
+    [ia,ifr].forEach(el=>el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();doAdd();}}));
+    fs.appendChild(row);
+    fs.dataset.k=k;
+    box.appendChild(fs);
+  });
+  if(focusCat>=0){const t=box.querySelector('fieldset[data-k="'+focusCat+'"] input');if(t)t.focus();}
+}
+$('#wmBulkAdd').addEventListener('click',()=>{
+  const k=+$('#wmBulkCat').value,list=textToWords($('#wmBulk').value);
+  if(!list.length){$('#wmErr').textContent='Écris au moins un mot, un par ligne.';return;}
+  const n=addWords(k,list);
+  $('#wmBulk').value='';focusCat=-1;renderWords();
+  $('#wmErr').textContent=n+' mot'+(n>1?'s ajoutés':' ajouté')+(n<list.length?' (les doublons ont été ignorés).':'.');
+});
+$('#wmReset').addEventListener('click',()=>{
+  if(!confirm('Rétablir les mots d\u2019origine de cette leçon ? Les mots ajoutés seront perdus.'))return;
+  state.lessons[M]=JSON.parse(JSON.stringify(DEFAULTS[M]));save();focusCat=-1;renderWords();
+  $('#wmErr').textContent='Mots d\u2019origine rétablis.';
+});
+$('#wmClose').addEventListener('click',()=>$('#dlgWords').close());
+$('#dlgWords').addEventListener('close',()=>{if(G===null)renderPicker();});
+$('#gAdd').addEventListener('click',()=>{if(G)openWords(G.li);});
+
+/* ---------- réglages ---------- */
+$('#btnSettings').addEventListener('click',()=>{
+  const s=state.settings;
+  $('#sBoxes').value=String(s.boxes);$('#sRounds').value=String(s.rounds);$('#sTorch').value=s.torch;
+  $('#sFrMode').value=s.frMode;$('#sSnd').checked=!!s.sound;$('#sJson').value='';$('#sErr').textContent='';
+  $('#dlgSet').showModal();
+});
+function readSettings(){
+  const s=state.settings;
+  s.boxes=+$('#sBoxes').value;s.rounds=+$('#sRounds').value;s.torch=+$('#sTorch').value;
+  s.frMode=$('#sFrMode').value;s.sound=$('#sSnd').checked;save();
+}
+['#sBoxes','#sRounds','#sTorch','#sFrMode','#sSnd'].forEach(id=>$(id).addEventListener('change',readSettings));
+$('#sClose').addEventListener('click',()=>{readSettings();$('#dlgSet').close();});
+const dump=()=>JSON.stringify({lessons:state.lessons,progress:state.progress,settings:state.settings});
+$('#sExport').addEventListener('click',()=>{$('#sJson').value=dump();$('#sJson').select();$('#sErr').textContent='Copie ce texte pour garder tes mots ajoutés.';});
+$('#sDown').addEventListener('click',()=>{
+  const blob=new Blob([dump()],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='lourati1-chambre-sombre.json';document.body.appendChild(a);a.click();a.remove();
+});
+$('#sImport').addEventListener('click',()=>{
+  try{
+    const d=JSON.parse($('#sJson').value);
+    if(!d||!Array.isArray(d.lessons))throw new Error('x');
+    state.lessons=normalizeLessons(d.lessons);
+    if(d.progress)state.progress=d.progress;
+    if(d.settings)state.settings=Object.assign(state.settings,d.settings);
+    save();renderPicker();$('#sErr').textContent='Sauvegarde importée.';
+  }catch(e){$('#sErr').textContent='Texte non reconnu : colle l\u2019export complet.';}
+});
+
+renderPicker();showView('picker');
+})();
+</script>
+</body>
+</html>
